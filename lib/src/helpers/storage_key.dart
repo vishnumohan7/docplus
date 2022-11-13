@@ -1,1 +1,1 @@
-enum StorageKey { jwt }
+enum StorageKey { jwt, userData }

@@ -5,9 +5,9 @@ import 'package:proform1/src/web_service/api_routes.dart';
 import 'package:proform1/src/models/category_model.dart';
 
 class CategoryRepository {
-  Future<ApiResponseModel> addCategory(CategoryModel category) async {
+  Future<ApiResponseModel> addCategory(CategoryModel categoryModel) async {
     ApiResponseModel response = await ApiHelper()
-        .makePostRequest(ApiRoutes.categoryroute, category.toJson());
+        .makePostRequest(ApiRoutes.categoryroute, categoryModel.toJson());
     return response;
   }
 
@@ -17,21 +17,21 @@ class CategoryRepository {
     return response;
   }
 
- Future<ApiResponseModel> getCategoryById(CategoryModel category) async {
+ Future<ApiResponseModel> getCategoryById(CategoryModel categoryModel) async {
     ApiResponseModel response =
-        await ApiHelper().makeGetRequest(ApiRoutes.categoryroute+"/${category.id}");
+        await ApiHelper().makeGetRequest(ApiRoutes.categoryroute+"/${categoryModel.id}");
     return response;
   }
 
-  Future<ApiResponseModel> updateCategoryById(CategoryModel category) async {
+  Future<ApiResponseModel> updateCategoryById(CategoryModel categoryModel) async {
     ApiResponseModel response = await ApiHelper()
-        .makePatchRequest(ApiRoutes.categoryroute+"/${category.id}", category);
+        .makePatchRequest(ApiRoutes.categoryroute+"/${categoryModel.id}", categoryModel);
     return response;
   }
 
- Future<ApiResponseModel> deleteCategoryById(CategoryModel category) async {
+ Future<ApiResponseModel> deleteCategoryById(CategoryModel categoryModel) async {
     ApiResponseModel response =
-        await ApiHelper().makeDeleteRequest(ApiRoutes.categoryroute+"/${category.id}");
+        await ApiHelper().makeDeleteRequest(ApiRoutes.categoryroute+"/${categoryModel.id}");
     return response;
   }
 }

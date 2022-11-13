@@ -20,6 +20,10 @@ class AuthLoadSuccess extends AuthState {
 }
 
 class AuthLoadFailure extends AuthState {
+  final String errorMessage;
+
+  AuthLoadFailure(this.errorMessage);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [errorMessage];
 }

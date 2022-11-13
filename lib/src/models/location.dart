@@ -1,9 +1,10 @@
 class Location {
   Location(
-      this.type, 
-      this.coordinates,);
+    this.type,
+    this.coordinates,
+  );
 
-  factory Location.fromJSON(Map<String,dynamic>json){
+  factory Location.fromJSON(Map<String, dynamic> json) {
     return Location(json["type"], json["coordinates"]);
   }
   String type;
@@ -15,5 +16,4 @@ class Location {
     map['coordinates'] = coordinates;
     return map;
   }
-
 }

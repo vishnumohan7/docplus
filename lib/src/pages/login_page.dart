@@ -43,7 +43,9 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(7),
                         borderSide: BorderSide(color: Colors.red))),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               TextFormField(
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
@@ -59,24 +61,35 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(7),
                         borderSide: BorderSide(color: Colors.red))),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is AuthLoadSuccess) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-                  }else if(state is AuthLoadFailure){
-                    showDialog(context: context,builder:(_,){
-                      return AlertDialog(
-                        title: Text("Login Failed"),
-                        content: Text("Check your credentials"),
-                        actions: [
-                          TextButton(onPressed: (){
-                            Navigator.pop(context);
-                          }, child: Text("Ok"))
-                        ],
-                      );
-                    });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => HomePage()));
+                  } else if (state is AuthLoadFailure) {
+                    String errorMessage = state.errorMessage;
+                    showDialog(
+                        context: context,
+                        builder: (
+                          _,
+                        ) {
+                          return AlertDialog(
+                            title: const Text("Login Failed"),
+                            content: Text("$errorMessage"),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Ok"))
+                            ],
+                          );
+                        });
                   }
                 },
                 builder: (context, state) {
