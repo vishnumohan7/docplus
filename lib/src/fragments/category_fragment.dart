@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proform1/src/cubit/category_cubit/category_cubit.dart';
 import 'package:proform1/src/models/category_model.dart';
 import 'package:proform1/src/pages/add_category.dart';
+import 'package:proform1/src/pages/edit_category.dart';
 import 'package:proform1/src/widgets/app_load_error.dart';
 import 'package:proform1/src/widgets/app_loader.dart';
 
@@ -68,7 +69,9 @@ class _CategoryFragmentState extends State<CategoryFragment> {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                IconButton(onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditCategory(categoryModel: item,)));
+                }, icon: Icon(Icons.edit)),
                 IconButton(
                   onPressed: () {
                     context.read<CategoryCubit>().deleteCategory(item);
