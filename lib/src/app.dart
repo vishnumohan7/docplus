@@ -8,11 +8,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.lightGreen),
-      home: BlocProvider(
-        create: (context) => AuthCubit(),
-        child: LoginPage(),
+    return BlocProvider(
+      create: (context) => AuthCubit()..checkAutoLogin(),
+      child: MaterialApp(
+        theme: ThemeData(primaryColor: Colors.lightGreen),
+        home: LoginPage(),
       ),
     );
   }

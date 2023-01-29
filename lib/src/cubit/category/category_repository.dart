@@ -33,5 +33,6 @@ class CategoryRepository {
     ApiResponseModel response =
         await ApiHelper().makeDeleteRequest(ApiRoutes.categoryroute+"/${categoryModel.id}");
     return response;
+
   }
 }

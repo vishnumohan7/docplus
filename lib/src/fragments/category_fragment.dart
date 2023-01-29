@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proform1/src/cubit/category_cubit/category_cubit.dart';
+import 'package:proform1/src/cubit/category/category_cubit.dart';
 import 'package:proform1/src/models/category_model.dart';
 import 'package:proform1/src/pages/add_category.dart';
 import 'package:proform1/src/pages/edit_category.dart';
@@ -34,7 +34,7 @@ class _CategoryFragmentState extends State<CategoryFragment> {
               } else if (state is CategoryLoadError) {
                 return AppLoadErrorWidget(
                     errorMessage: "errorMessage",
-                    onReload: () {
+                    onButtonTap: () {
                       context.read<CategoryCubit>().getAllCategories();
                     });
               } else {

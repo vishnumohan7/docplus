@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:proform1/src/cubit/category_cubit/category_repository.dart';
+import 'package:proform1/src/cubit/category/category_repository.dart';
 import 'package:proform1/src/models/api_response_model.dart';
 import 'package:proform1/src/models/category_model.dart';
 
@@ -30,7 +30,6 @@ class CategoryCubit extends Cubit<CategoryState> {
 
   addCategory(CategoryModel categoryModel) async {
     emit(CategoryLoading());
-
     try {
       ApiResponseModel response = await _repository.addCategory(categoryModel);
       if (response.status) {

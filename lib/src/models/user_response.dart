@@ -1,23 +1,24 @@
 class UserResponse {
   UserResponse({
-      Location? location, 
-      String? id, 
-      String? email, 
-      String? password, 
-      bool? isActive, 
-      String? userType, 
-      String? name, 
-      String? dob, 
-      String? addressLine1, 
-      String? addressLine3, 
-      String? city, 
-      String? district, 
-      String? state, 
-      String? country, 
-      String? pincode, 
-      String? createdAt, 
-      String? updatedAt, 
-      num? v,}){
+    Location? location,
+    String? id,
+    String? email,
+    String? password,
+    bool? isActive,
+    String? userType,
+    String? name,
+    String? dob,
+    String? addressLine1,
+    String? addressLine3,
+    String? city,
+    String? district,
+    String? state,
+    String? country,
+    String? pincode,
+    String? createdAt,
+    String? updatedAt,
+    num? v,
+  }) {
     _location = location;
     _id = id;
     _email = email;
@@ -36,10 +37,16 @@ class UserResponse {
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
-}
+  }
+
+  String getFullAddress() {
+    return [_addressLine1, _addressLine3, _city, _country, _district, _location]
+        .join("");
+  }
 
   UserResponse.fromJson(dynamic json) {
-    _location = json['location'] != null ? Location.fromJson(json['location']) : null;
+    _location =
+        json['location'] != null ? Location.fromJson(json['location']) : null;
     _id = json['_id'];
     _email = json['email'];
     _password = json['password'];
@@ -76,43 +83,46 @@ class UserResponse {
   String? _createdAt;
   String? _updatedAt;
   num? _v;
-UserResponse copyWith({  Location? location,
-  String? id,
-  String? email,
-  String? password,
-  bool? isActive,
-  String? userType,
-  String? name,
-  String? dob,
-  String? addressLine1,
-  String? addressLine3,
-  String? city,
-  String? district,
-  String? state,
-  String? country,
-  String? pincode,
-  String? createdAt,
-  String? updatedAt,
-  num? v,
-}) => UserResponse(  location: location ?? _location,
-  id: id ?? _id,
-  email: email ?? _email,
-  password: password ?? _password,
-  isActive: isActive ?? _isActive,
-  userType: userType ?? _userType,
-  name: name ?? _name,
-  dob: dob ?? _dob,
-  addressLine1: addressLine1 ?? _addressLine1,
-  addressLine3: addressLine3 ?? _addressLine3,
-  city: city ?? _city,
-  district: district ?? _district,
-  state: state ?? _state,
-  country: country ?? _country,
-  pincode: pincode ?? _pincode,
-  createdAt: createdAt ?? _createdAt,
-  updatedAt: updatedAt ?? _updatedAt,
-  v: v ?? _v,
-);
+  UserResponse copyWith({
+    Location? location,
+    String? id,
+    String? email,
+    String? password,
+    bool? isActive,
+    String? userType,
+    String? name,
+    String? dob,
+    String? addressLine1,
+    String? addressLine3,
+    String? city,
+    String? district,
+    String? state,
+    String? country,
+    String? pincode,
+    String? createdAt,
+    String? updatedAt,
+    num? v,
+  }) =>
+      UserResponse(
+        location: location ?? _location,
+        id: id ?? _id,
+        email: email ?? _email,
+        password: password ?? _password,
+        isActive: isActive ?? _isActive,
+        userType: userType ?? _userType,
+        name: name ?? _name,
+        dob: dob ?? _dob,
+        addressLine1: addressLine1 ?? _addressLine1,
+        addressLine3: addressLine3 ?? _addressLine3,
+        city: city ?? _city,
+        district: district ?? _district,
+        state: state ?? _state,
+        country: country ?? _country,
+        pincode: pincode ?? _pincode,
+        createdAt: createdAt ?? _createdAt,
+        updatedAt: updatedAt ?? _updatedAt,
+        v: v ?? _v,
+      );
   Location? get location => _location;
   String? get id => _id;
   String? get email => _email;
@@ -156,7 +166,6 @@ UserResponse copyWith({  Location? location,
     map['__v'] = _v;
     return map;
   }
-
 }
 
 /// type : "Point"
@@ -164,23 +173,28 @@ UserResponse copyWith({  Location? location,
 
 class Location {
   Location({
-      String? type, 
-      List<num>? coordinates,}){
+    String? type,
+    List<num>? coordinates,
+  }) {
     _type = type;
     _coordinates = coordinates;
-}
+  }
 
   Location.fromJson(dynamic json) {
     _type = json['type'];
-    _coordinates = json['coordinates'] != null ? json['coordinates'].cast<num>() : [];
+    _coordinates =
+        json['coordinates'] != null ? json['coordinates'].cast<num>() : [];
   }
   String? _type;
   List<num>? _coordinates;
-Location copyWith({  String? type,
-  List<num>? coordinates,
-}) => Location(  type: type ?? _type,
-  coordinates: coordinates ?? _coordinates,
-);
+  Location copyWith({
+    String? type,
+    List<num>? coordinates,
+  }) =>
+      Location(
+        type: type ?? _type,
+        coordinates: coordinates ?? _coordinates,
+      );
   String? get type => _type;
   List<num>? get coordinates => _coordinates;
 
@@ -190,5 +204,4 @@ Location copyWith({  String? type,
     map['coordinates'] = _coordinates;
     return map;
   }
-
 }

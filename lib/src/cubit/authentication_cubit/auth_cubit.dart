@@ -25,6 +25,8 @@ class AuthCubit extends Cubit<AuthState> {
             StorageKey.userData.name,
             jsonEncode(userData
                 .toJson())); //1st: convert object to key value pair 2: jsonEncode will convert key value par to string
+        StorageHelper.writeData(
+            StorageKey.loginTime.name, DateTime.now().toString());
         emit(AuthLoadSuccess());
       } else {
         String? errorMessage = response.error!;
@@ -33,5 +35,21 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (ex) {
       emit(AuthLoadFailure("Error Authenticating User"));
     }
+  }
+
+  checkAutoLogin() async {
+    emit(AuthLoading());
+    bool isAutoLoginAllowed = await _repository.checkAutoLogin();
+    if (isAutoLoginAllowed) {
+      emit(AuthLoadSuccess());
+    } else {
+      emit(AuthInitial());
+    }
+  }
+
+  logout() async {
+    emit(AuthLoading());
+    await StorageHelper.clearAllData();
+    emit(AuthInitial());
   }
 }
